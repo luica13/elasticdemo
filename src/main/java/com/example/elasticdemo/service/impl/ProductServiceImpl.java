@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.example.elasticdemo.entity.Product;
+import com.example.elasticdemo.enums.Category;
 import com.example.elasticdemo.repository.ProductRepository;
 import com.example.elasticdemo.service.ProductService;
 
@@ -30,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Page<Product> findByFilteredTagQuery(String tag, Pageable pageable) {
-		return productRepository.findByFilteredTagQuery(category, pageable);
+		return productRepository.findByFilteredTagQuery(Category.valueOf(tag), pageable);
 	}
 
 	@Override
