@@ -1,5 +1,8 @@
 package com.example.elasticdemo.entity;
 
+import static org.springframework.data.elasticsearch.annotations.FieldType.Double;
+import static org.springframework.data.elasticsearch.annotations.FieldType.text;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,9 +17,11 @@ import com.example.elasticdemo.enums.Category;
 public class Product {
     @Id
     private String id;
-     
-    private String name;
     
+    @Field(type = text)	
+    private String name;
+
+    @Field(type = Double)	
     private BigDecimal price;
      
     @Field(type = FieldType.Nested)
@@ -52,6 +57,11 @@ public class Product {
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", categories=" + categories + "]";
 	}
      
 }
