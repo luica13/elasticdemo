@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.elasticdemo.entity.Product;
 
-@Service
 public interface ProductService {
 
 	Product save(Product Product);

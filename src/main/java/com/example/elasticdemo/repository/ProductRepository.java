@@ -12,8 +12,8 @@ import com.example.elasticdemo.enums.Category;
 @Repository
 public interface ProductRepository extends ElasticsearchRepository<Product, String> {
 
-	Page<Product> findByProductName(String name, Pageable pageable);
+	Page<Product> findByName(String name, Pageable pageable);
 
 	@Query("{\"bool\": {\"must\": {\"match_all\": {}}, \"filter\": {\"term\": {\"category\": \"?0\" }}}}")
-	Page<Product> findByFilteredTagQuery(Category category, Pageable pageable);
+	Page<Product> findByCategory(Category category, Pageable pageable);
 }
