@@ -37,6 +37,9 @@ public class ElasticDemoServiceTest {
 
 	@Before
 	public void before() {
+		if(elasticsearchTemplate.indexExists(Product.class)) {
+			elasticsearchTemplate.deleteIndex(Product.class);
+		}
 		elasticsearchTemplate.createIndex(Product.class);
 
 		Product product = new Product();
