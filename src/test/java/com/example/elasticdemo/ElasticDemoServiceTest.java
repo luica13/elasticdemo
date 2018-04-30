@@ -41,6 +41,7 @@ public class ElasticDemoServiceTest {
 			elasticsearchTemplate.deleteIndex(Product.class);
 		}
 		elasticsearchTemplate.createIndex(Product.class);
+		elasticsearchTemplate.putMapping(Product.class);
 
 		Product product = new Product();
 		product.setName("AAAAA");

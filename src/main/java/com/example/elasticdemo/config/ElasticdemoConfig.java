@@ -1,8 +1,11 @@
 package com.example.elasticdemo.config;
 
+import java.net.InetAddress;
+
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,24 +46,24 @@ public class ElasticdemoConfig {
 	// }
 
 	@Value("${spring.data.elasticsearch.host}")
-	private String EsHost;
+	private String esHost;
 
 	@Value("${spring.data.elasticsearch.port}")
-	private int EsPort;
+	private int esPort;
 
 	@Value("${spring.data.elasticsearch.clustername}")
-	private String EsClusterName;
+	private String esClusterName;
 
 	@Bean
 	public Client client() throws Exception {
 
-		Settings esSettings = Settings.builder().put("cluster.name", EsClusterName).put("http.enabled", "false")
-				.build();
+		Settings esSettings = Settings.builder().put("cluster.name", esClusterName)/*.put("node.name", "node_1")*/.build();
 		TransportClient client = new PreBuiltTransportClient(esSettings);
-		// .addTransportAddress(Transpo(InetAddress.getByName(EsHost), 9300))
-		// .addTransportAddress(new TransportAddress(InetAddress.getByName("localhost"), 9300));
-		return client;
 
+		    client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(esHost), esPort));
+//		 .addTransportAddress(new InetSocketTransportAddress(
+//	                InetAddress.getByAddress(new byte[]{127, 0, 0, 1}), 9300));
+		return client;
 	}
 
 	@Bean
