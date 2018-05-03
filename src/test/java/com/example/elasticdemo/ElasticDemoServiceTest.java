@@ -44,20 +44,23 @@ public class ElasticDemoServiceTest {
 		elasticsearchTemplate.putMapping(Product.class);
 
 		Product product = new Product();
+		product.setId("1");
 		product.setName("AAAAA");
-		product.setCategories(Arrays.asList(Category.BOOKS));
+//		product.setCategories(Arrays.asList(Category.BOOKS));
 		product.setPrice(BigDecimal.TEN);
 		productService.save(product);
 
 		product = new Product();
+		product.setId("2");
 		product.setName("BBBBB");
-		product.setCategories(Arrays.asList(Category.CLOTHING));
+//		product.setCategories(Arrays.asList(Category.CLOTHING));
 		product.setPrice(BigDecimal.ONE);
 		productService.save(product);
 
 		product = new Product();
+		product.setId("3");
 		product.setName("CCCCC");
-		product.setCategories(Arrays.asList(Category.CLOTHING));
+//		product.setCategories(Arrays.asList(Category.CLOTHING));
 		product.setPrice(BigDecimal.ZERO);
 		productService.save(product);
 	}
